@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="index.js">
+
+</script>
+<script>
+    var obj = {
+        data() {
+            return {
+                text:"text",
+                color:"white",
+                bgColor:"red",
+                editDatavalue:"editDatavalue",
+            }
+        },
+        computed:{
+            textCom(){
+                return this.text + "已经加上了textCom"+this.color+this.bgColor
+            },
+            editData: {
+                get () {
+                    return this.editDatavalue+"已经加上了editData"
+                },
+                set (v) {
+
+                    this.bgColor = v
+                }
+            }
+        },
+        watch:{
+            text:{
+                handler(newV,oldV){
+                    console.log("text",newV,oldV)
+                    this.color = "gray"
+                },
+                immediate:true
+            },
+            editData:{
+                handler(newV,oldV){
+                    debugger
+                    console.log("editData",newV,oldV)
+                    this.bgColor = 'yellow'
+                },
+                deep:true,
+                // immediate:true
+
+            }
+        }
+    }
+    new Vue(obj)
+</script>
+</body>
+</html>
